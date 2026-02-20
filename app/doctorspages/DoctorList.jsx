@@ -1,125 +1,22 @@
 "use client";
 // app/doctors/DoctorList.jsx
-// Client Component — handles search, filter, favourites, booking
+// Client Component — search, filter, favourites, booking
 
 import { useState } from "react";
+import Link from "next/link";
 import styles from "./page.module.css";
 
-// ── Data ───────────────────────────────────────────────
 const SPECIALTIES = ["All", "Cardiologist", "Psychologist", "Dermatologist", "Ophthalmologist", "Neurologist"];
 
 const DOCTORS = [
-  {
-    id: 1,
-    name: "Dr. Anika Mehta",
-    specialty: "Cardiologist",
-    qualification: "MBBS, MD (Cardiology)",
-    location: "Andheri, Mumbai",
-    experience: 12,
-    rating: 4.9,
-    reviews: 312,
-    patients: "5,000+",
-    available: true,
-    slots: ["09:30 AM", "11:00 AM", "03:00 PM"],
-    nextSlot: "09:30 AM",
-    price: 800,
-    tag: "Top Rated",
-    initials: "AM",
-    hue: "210",   // blue
-  },
-  {
-    id: 2,
-    name: "Dr. Rajesh Iyer",
-    specialty: "Psychologist",
-    qualification: "MBBS, M.Phil (Psychiatry)",
-    location: "Bandra, Mumbai",
-    experience: 8,
-    rating: 4.7,
-    reviews: 189,
-    patients: "3,200+",
-    available: true,
-    slots: ["10:00 AM", "12:30 PM"],
-    nextSlot: "10:00 AM",
-    price: 600,
-    tag: "Popular",
-    initials: "RI",
-    hue: "262",   // purple
-  },
-  {
-    id: 3,
-    name: "Dr. Priya Nair",
-    specialty: "Dermatologist",
-    qualification: "MBBS, MD (Dermatology)",
-    location: "Powai, Mumbai",
-    experience: 15,
-    rating: 4.8,
-    reviews: 421,
-    patients: "8,100+",
-    available: false,
-    slots: [],
-    nextSlot: "Tomorrow 9:00 AM",
-    price: 750,
-    tag: null,
-    initials: "PN",
-    hue: "340",   // pink
-  },
-  {
-    id: 4,
-    name: "Dr. Suresh Kumar",
-    specialty: "Ophthalmologist",
-    qualification: "MBBS, MS (Ophthalmology)",
-    location: "Dadar, Mumbai",
-    experience: 20,
-    rating: 4.6,
-    reviews: 560,
-    patients: "12,000+",
-    available: true,
-    slots: ["02:00 PM", "04:30 PM"],
-    nextSlot: "02:00 PM",
-    price: 900,
-    tag: "Senior Expert",
-    initials: "SK",
-    hue: "38",    // amber
-  },
-  {
-    id: 5,
-    name: "Dr. Meera Krishnan",
-    specialty: "Neurologist",
-    qualification: "MBBS, DM (Neurology)",
-    location: "Juhu, Mumbai",
-    experience: 10,
-    rating: 4.9,
-    reviews: 234,
-    patients: "4,700+",
-    available: true,
-    slots: ["08:30 AM", "01:00 PM"],
-    nextSlot: "08:30 AM",
-    price: 1100,
-    tag: "Top Rated",
-    initials: "MK",
-    hue: "160",   // teal
-  },
-  {
-    id: 6,
-    name: "Dr. Vikram Shah",
-    specialty: "Cardiologist",
-    qualification: "MBBS, MD, DM (Cardiology)",
-    location: "Thane, Mumbai",
-    experience: 18,
-    rating: 4.7,
-    reviews: 389,
-    patients: "9,500+",
-    available: false,
-    slots: [],
-    nextSlot: "Tomorrow 11:00 AM",
-    price: 950,
-    tag: null,
-    initials: "VS",
-    hue: "196",   // cyan
-  },
+  { id: 1, name: "Dr. Anika Mehta",    specialty: "Cardiologist",    qualification: "MBBS, MD (Cardiology)",       location: "Andheri, Mumbai",  experience: 12, rating: 4.9, reviews: 312, patients: "5,000+",  available: true,  nextSlot: "09:30 AM",        price: 800,  tag: "Top Rated",    imageUrl: "https://ui-avatars.com/api/?name=Anika+Mehta&background=0ea5e9&color=fff&size=128&bold=true", hue: "210" },
+  { id: 2, name: "Dr. Rajesh Iyer",    specialty: "Psychologist",    qualification: "MBBS, M.Phil (Psychiatry)",  location: "Bandra, Mumbai",   experience: 8,  rating: 4.7, reviews: 189, patients: "3,200+",  available: true,  nextSlot: "10:00 AM",        price: 600,  tag: "Popular",      imageUrl: "https://ui-avatars.com/api/?name=Rajesh+Iyer&background=7c3aed&color=fff&size=128&bold=true",  hue: "262" },
+  { id: 3, name: "Dr. Priya Nair",     specialty: "Dermatologist",   qualification: "MBBS, MD (Dermatology)",     location: "Powai, Mumbai",    experience: 15, rating: 4.8, reviews: 421, patients: "8,100+",  available: false, nextSlot: "Tomorrow 9:00 AM", price: 750,  tag: null,           imageUrl: "https://ui-avatars.com/api/?name=Priya+Nair&background=db2777&color=fff&size=128&bold=true",   hue: "340" },
+  { id: 4, name: "Dr. Suresh Kumar",   specialty: "Ophthalmologist", qualification: "MBBS, MS (Ophthalmology)",   location: "Dadar, Mumbai",    experience: 20, rating: 4.6, reviews: 560, patients: "12,000+", available: true,  nextSlot: "02:00 PM",        price: 900,  tag: "Senior Expert", imageUrl: "https://ui-avatars.com/api/?name=Suresh+Kumar&background=d97706&color=fff&size=128&bold=true",  hue: "38"  },
+  { id: 5, name: "Dr. Meera Krishnan", specialty: "Neurologist",     qualification: "MBBS, DM (Neurology)",       location: "Juhu, Mumbai",     experience: 10, rating: 4.9, reviews: 234, patients: "4,700+",  available: true,  nextSlot: "08:30 AM",        price: 1100, tag: "Top Rated",    imageUrl: "https://ui-avatars.com/api/?name=Meera+Krishnan&background=059669&color=fff&size=128&bold=true", hue: "160" },
+  { id: 6, name: "Dr. Vikram Shah",    specialty: "Cardiologist",    qualification: "MBBS, MD, DM (Cardiology)",  location: "Thane, Mumbai",    experience: 18, rating: 4.7, reviews: 389, patients: "9,500+",  available: false, nextSlot: "Tomorrow 11 AM",  price: 950,  tag: null,           imageUrl: "https://ui-avatars.com/api/?name=Vikram+Shah&background=0891b2&color=fff&size=128&bold=true",   hue: "196" },
 ];
 
-// ── Sub-components ─────────────────────────────────────
 function StarRating({ rating }) {
   return (
     <span className={styles.stars}>
@@ -130,14 +27,10 @@ function StarRating({ rating }) {
 }
 
 function DoctorCard({ doc, isFav, onToggleFav }) {
-  const [booked, setBooked] = useState(false);
-
   return (
     <div className={styles.card}>
-      {/* Tag ribbon */}
       {doc.tag && <div className={styles.cardTag}>{doc.tag}</div>}
 
-      {/* Favourite */}
       <button
         className={`${styles.favBtn} ${isFav ? styles.favActive : ""}`}
         onClick={() => onToggleFav(doc.id)}
@@ -146,23 +39,20 @@ function DoctorCard({ doc, isFav, onToggleFav }) {
         {isFav ? "♥" : "♡"}
       </button>
 
-      {/* Avatar + basic info */}
       <div className={styles.cardTop}>
-        <div
-          className={styles.avatar}
-          style={{
-            background: `linear-gradient(135deg, hsl(${doc.hue},80%,90%), hsl(${doc.hue},70%,75%))`,
-            color: `hsl(${doc.hue},55%,35%)`,
-          }}
-        >
-          {doc.initials}
-          {/* Available dot */}
+        <div className={styles.avatarWrap}>
+          <img
+            src={doc.imageUrl}
+            alt={doc.name}
+            className={styles.avatar}
+            style={{ borderColor: `hsl(${doc.hue},70%,80%)` }}
+          />
           <span className={`${styles.availDot} ${doc.available ? styles.green : styles.grey}`} />
         </div>
 
         <div className={styles.cardInfo}>
           <h3 className={styles.docName}>{doc.name}</h3>
-          <p className={styles.docSpec} style={{ color: `hsl(${doc.hue},60%,45%)` }}>{doc.specialty}</p>
+          <p className={styles.docSpec} style={{ color: `hsl(${doc.hue},55%,42%)` }}>{doc.specialty}</p>
           <p className={styles.docQual}>{doc.qualification}</p>
           <div className={styles.metaRow}>
             <StarRating rating={doc.rating} />
@@ -171,7 +61,6 @@ function DoctorCard({ doc, isFav, onToggleFav }) {
         </div>
       </div>
 
-      {/* Stats row */}
       <div className={styles.statsRow}>
         <div className={styles.stat}>
           <span className={styles.statIcon}>👤</span>
@@ -192,50 +81,44 @@ function DoctorCard({ doc, isFav, onToggleFav }) {
         </div>
       </div>
 
-      {/* Availability */}
       <div className={styles.availRow}>
         <span className={`${styles.availBadge} ${doc.available ? styles.availGreen : styles.availGrey}`}>
           {doc.available ? "● Available today" : "○ " + doc.nextSlot}
         </span>
-        {doc.available && doc.slots.length > 0 && (
-          <span className={styles.slotPreview}>Next: {doc.slots[0]}</span>
-        )}
+        {doc.available && <span className={styles.slotPreview}>Next: {doc.nextSlot}</span>}
       </div>
 
-      {/* Footer */}
       <div className={styles.cardFooter}>
         <div>
           <p className={styles.priceLabel}>Consultation fee</p>
           <p className={styles.price}>₹{doc.price}</p>
         </div>
-        <button
-          className={`${styles.bookBtn} ${booked ? styles.bookBtnBooked : ""}`}
-          disabled={booked}
-          onClick={() => setBooked(true)}
-        >
-          {booked ? "✓ Booked!" : "Book Appointment"}
-        </button>
+        <Link href="/book-appointment" className={styles.bookBtn}>
+          Book Appointment
+        </Link>
       </div>
     </div>
   );
 }
 
-// ── Main Component ─────────────────────────────────────
 export default function DoctorList() {
-  const [search,    setSearch]    = useState("");
+  const [search,     setSearch]     = useState("");
   const [activeSpec, setActiveSpec] = useState("All");
   const [favourites, setFavourites] = useState([]);
-  const [sortBy,    setSortBy]    = useState("rating");
+  const [sortBy,     setSortBy]     = useState("rating");
 
   const toggleFav = (id) =>
-    setFavourites((prev) => prev.includes(id) ? prev.filter((f) => f !== id) : [...prev, id]);
+    setFavourites((prev) =>
+      prev.includes(id) ? prev.filter((f) => f !== id) : [...prev, id]
+    );
 
   const filtered = DOCTORS
     .filter((d) => {
       const matchSpec   = activeSpec === "All" || d.specialty === activeSpec;
-      const matchSearch = d.name.toLowerCase().includes(search.toLowerCase()) ||
-                          d.specialty.toLowerCase().includes(search.toLowerCase()) ||
-                          d.location.toLowerCase().includes(search.toLowerCase());
+      const matchSearch =
+        d.name.toLowerCase().includes(search.toLowerCase()) ||
+        d.specialty.toLowerCase().includes(search.toLowerCase()) ||
+        d.location.toLowerCase().includes(search.toLowerCase());
       return matchSpec && matchSearch;
     })
     .sort((a, b) => {
@@ -249,7 +132,6 @@ export default function DoctorList() {
   return (
     <div className={styles.pageInner}>
 
-      {/* ── Header ─────────────────────────────────────── */}
       <header className={styles.header}>
         <div className={styles.headerLeft}>
           <div className={styles.headerAvatar}>P</div>
@@ -267,7 +149,6 @@ export default function DoctorList() {
         </button>
       </header>
 
-      {/* ── Stats strip ────────────────────────────────── */}
       <div className={styles.statsStrip}>
         {[
           { num: "2,400+", label: "Doctors" },
@@ -282,7 +163,6 @@ export default function DoctorList() {
         ))}
       </div>
 
-      {/* ── Search ─────────────────────────────────────── */}
       <div className={styles.searchWrap}>
         <svg className={styles.searchIcon} width="17" height="17" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
           <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
@@ -295,11 +175,10 @@ export default function DoctorList() {
           onChange={(e) => setSearch(e.target.value)}
         />
         {search && (
-          <button className={styles.clearBtn} onClick={() => setSearch("")} aria-label="Clear search">✕</button>
+          <button className={styles.clearBtn} onClick={() => setSearch("")} aria-label="Clear">✕</button>
         )}
       </div>
 
-      {/* ── Specialty chips ─────────────────────────────── */}
       <div className={styles.chips}>
         {SPECIALTIES.map((s) => (
           <button
@@ -312,7 +191,6 @@ export default function DoctorList() {
         ))}
       </div>
 
-      {/* ── Toolbar: count + sort ───────────────────────── */}
       <div className={styles.toolbar}>
         <p className={styles.count}>
           <strong>{filtered.length}</strong> doctor{filtered.length !== 1 ? "s" : ""} found
@@ -329,10 +207,9 @@ export default function DoctorList() {
         </select>
       </div>
 
-      {/* ── Doctor Cards ────────────────────────────────── */}
       {filtered.length === 0 ? (
         <div className={styles.empty}>
-          <p>No doctors found for "{search || activeSpec}". Try a different search.</p>
+          <p>No doctors found. Try a different search or filter.</p>
         </div>
       ) : (
         <div className={styles.grid}>

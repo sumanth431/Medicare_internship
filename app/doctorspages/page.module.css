@@ -389,17 +389,20 @@
   margin-bottom: 16px;
 }
 
+.avatarWrap {
+  position: relative;
+  flex-shrink: 0;
+  width: 64px;
+  height: 64px;
+}
+
 .avatar {
   width: 64px;
   height: 64px;
   border-radius: 18px;
-  font-size: 20px;
-  font-weight: 800;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
-  position: relative;
+  object-fit: cover;
+  border: 3px solid #e0f2fe;
+  display: block;
 }
 
 .availDot {
@@ -560,6 +563,9 @@
   box-shadow: 0 3px 12px rgba(14,165,233,0.3);
   transition: opacity 0.2s, transform 0.1s;
   white-space: nowrap;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
 }
 
 .bookBtn:hover:not(:disabled) { opacity: 0.9; }
