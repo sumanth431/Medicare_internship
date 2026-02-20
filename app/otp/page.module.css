@@ -1,0 +1,361 @@
+/* app/otp/page.module.css */
+
+/* ── Base ─────────────────────────────────────────────── */
+.main {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'DM Sans', 'Segoe UI', sans-serif;
+  background: #f0f7ff;
+  padding: 24px;
+}
+
+/* ── Background Blobs ─────────────────────────────────── */
+.bg {
+  position: fixed;
+  inset: 0;
+  overflow: hidden;
+  z-index: 0;
+}
+
+.blob {
+  position: absolute;
+  border-radius: 50%;
+}
+
+.blob1 {
+  width: 480px;
+  height: 480px;
+  background: radial-gradient(circle, #b3d9ff 0%, #e0f0ff 70%);
+  top: -100px;
+  right: -80px;
+  opacity: 0.7;
+  animation: morph1 10s ease-in-out infinite alternate;
+}
+
+.blob2 {
+  width: 360px;
+  height: 360px;
+  background: radial-gradient(circle, #0ea5e9 0%, #bae6fd 70%);
+  bottom: -60px;
+  left: -80px;
+  opacity: 0.18;
+  animation: morph2 13s ease-in-out infinite alternate;
+}
+
+/* ── Card ─────────────────────────────────────────────── */
+.card {
+  position: relative;
+  z-index: 1;
+  background: rgba(255, 255, 255, 0.88);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-radius: 28px;
+  padding: 44px 40px 40px;
+  width: 100%;
+  max-width: 400px;
+  box-shadow: 0 8px 48px rgba(14, 165, 233, 0.12), 0 2px 12px rgba(0, 0, 0, 0.06);
+  border: 1px solid rgba(14, 165, 233, 0.12);
+  animation: fadeUp 0.6s ease both;
+  text-align: center;
+}
+
+/* ── Logo ─────────────────────────────────────────────── */
+.logoWrap {
+  text-align: center;
+  margin-bottom: 28px;
+}
+
+.logoBox {
+  width: 82px;
+  height: 82px;
+  margin: 0 auto 16px;
+  background: linear-gradient(145deg, #0ea5e9 0%, #0369a1 100%);
+  border-radius: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+  animation: logoGlow 3s ease-in-out infinite;
+}
+
+.shimmer {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(110deg, transparent 35%, rgba(255,255,255,0.18) 50%, transparent 65%);
+  animation: shimmer 3s ease-in-out infinite;
+}
+
+/* Checkmark draw animation */
+.checkLine {
+  stroke-dasharray: 40;
+  stroke-dashoffset: 40;
+  animation: drawCheck 0.7s ease-out 0.4s forwards;
+}
+
+/* Lock body fade */
+.lockBody {
+  opacity: 0;
+  animation: lockFade 0.4s ease-out 1s forwards;
+}
+
+.brand {
+  font-size: 25px;
+  font-weight: 800;
+  letter-spacing: -0.5px;
+  background: linear-gradient(135deg, #0c2a47 30%, #0ea5e9 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin: 0;
+}
+
+.tagline {
+  margin-top: 5px;
+  font-size: 13px;
+  color: #7fa8c4;
+  letter-spacing: 0.5px;
+}
+
+/* ── Heading ──────────────────────────────────────────── */
+.heading {
+  font-size: 22px;
+  font-weight: 800;
+  color: #1e3a5f;
+  margin: 0 0 8px;
+}
+
+.subheading {
+  font-size: 14px;
+  color: #7fa8c4;
+  margin: 0 0 28px;
+  line-height: 1.6;
+}
+
+.phoneHl {
+  color: #0ea5e9;
+  font-weight: 700;
+}
+
+/* ── OTP Row ──────────────────────────────────────────── */
+.otpRow {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  margin-bottom: 16px;
+}
+
+.otpInput {
+  width: 46px;
+  height: 56px;
+  border-radius: 14px;
+  border: 2px solid #e0eaf3;
+  background: #f7fbff;
+  text-align: center;
+  font-size: 24px;
+  font-weight: 800;
+  color: #1e3a5f;
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s, transform 0.15s;
+  font-family: 'DM Mono', 'Courier New', monospace;
+  caret-color: #0ea5e9;
+}
+
+.otpInput:focus {
+  border-color: #0ea5e9;
+  box-shadow: 0 0 0 3px rgba(14, 165, 233, 0.15);
+  transform: translateY(-2px);
+  background: white;
+}
+
+.otpFilled {
+  border-color: #0ea5e9;
+  background: #f0f9ff;
+  color: #0ea5e9;
+}
+
+.otpError {
+  border-color: #ef4444 !important;
+  background: #fff5f5 !important;
+  color: #ef4444 !important;
+  animation: shake 0.35s ease;
+}
+
+.otpSuccess {
+  border-color: #22c55e !important;
+  background: #f0fdf4 !important;
+  color: #22c55e !important;
+}
+
+/* ── Progress dots ────────────────────────────────────── */
+.progressDots {
+  display: flex;
+  gap: 6px;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #e0eaf3;
+  transition: background 0.2s, transform 0.2s;
+}
+
+.dotFilled {
+  background: #0ea5e9;
+  transform: scale(1.25);
+}
+
+/* ── Error ────────────────────────────────────────────── */
+.error {
+  margin-bottom: 14px;
+  padding: 10px 14px;
+  background: #fff0f0;
+  border: 1px solid #fca5a5;
+  border-radius: 10px;
+  font-size: 13px;
+  color: #b91c1c;
+  text-align: left;
+}
+
+/* ── Resend row ───────────────────────────────────────── */
+.resendRow {
+  margin-bottom: 20px;
+  min-height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.resendTimer {
+  font-size: 14px;
+  color: #7fa8c4;
+  margin: 0;
+}
+
+.timerBadge {
+  font-weight: 800;
+  color: #0ea5e9;
+  font-variant-numeric: tabular-nums;
+}
+
+.resendBtn {
+  background: none;
+  border: none;
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 700;
+  color: #0ea5e9;
+  cursor: pointer;
+  text-decoration: underline;
+  padding: 0;
+}
+
+.resendBtn:hover {
+  color: #0369a1;
+}
+
+/* ── Primary Button ───────────────────────────────────── */
+.btnPrimary {
+  width: 100%;
+  padding: 15px;
+  background: linear-gradient(135deg, #0ea5e9 0%, #0284c7 100%);
+  color: white;
+  border: none;
+  border-radius: 14px;
+  font-size: 16px;
+  font-weight: 700;
+  font-family: inherit;
+  cursor: pointer;
+  box-shadow: 0 4px 16px rgba(14, 165, 233, 0.35);
+  letter-spacing: 0.3px;
+  transition: opacity 0.2s, transform 0.1s;
+}
+
+.btnPrimary:hover:not(:disabled) {
+  opacity: 0.9;
+}
+
+.btnPrimary:active:not(:disabled) {
+  transform: scale(0.98);
+}
+
+.btnPrimary:disabled {
+  background: #7dd3fc;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+/* ── Sign Up ──────────────────────────────────────────── */
+.signupText {
+  text-align: center;
+  margin-top: 24px;
+  margin-bottom: 0;
+  font-size: 14px;
+  color: #7fa8c4;
+}
+
+.signupText a {
+  color: #0ea5e9;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.signupText a:hover {
+  text-decoration: underline;
+}
+
+/* ── Animations ───────────────────────────────────────── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(22px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes morph1 {
+  0%   { border-radius: 60% 40% 70% 30% / 50% 60% 40% 50%; }
+  50%  { border-radius: 30% 70% 40% 60% / 40% 50% 60% 40%; }
+  100% { border-radius: 50% 50% 30% 70% / 60% 40% 50% 50%; }
+}
+
+@keyframes morph2 {
+  0%   { border-radius: 40% 60% 30% 70% / 60% 40% 70% 30%; }
+  50%  { border-radius: 70% 30% 50% 50% / 30% 60% 40% 70%; }
+  100% { border-radius: 30% 70% 60% 40% / 50% 40% 60% 50%; }
+}
+
+@keyframes logoGlow {
+  0%, 100% { box-shadow: 0 6px 24px rgba(14,165,233,0.35); }
+  50%       { box-shadow: 0 6px 32px rgba(14,165,233,0.6); }
+}
+
+@keyframes shimmer {
+  0%        { transform: translateX(-120%); }
+  60%, 100% { transform: translateX(120%); }
+}
+
+@keyframes drawCheck {
+  to { stroke-dashoffset: 0; }
+}
+
+@keyframes lockFade {
+  to { opacity: 1; }
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  20%       { transform: translateX(-5px); }
+  40%       { transform: translateX(5px); }
+  60%       { transform: translateX(-4px); }
+  80%       { transform: translateX(4px); }
+}
+
+/* ── Responsive ───────────────────────────────────────── */
+@media (max-width: 480px) {
+  .card { padding: 36px 20px 32px; }
+  .otpInput { width: 40px; height: 50px; font-size: 20px; }
+  .otpRow { gap: 7px; }
+}
