@@ -301,7 +301,7 @@ export default function AppointmentConfirmed() {
 
       {/* ── Sticky footer button ──────────────────────── */}
       <div className={styles.stickyFooter}>
-        <Link href="/doctors" className={styles.viewBtn}>
+        <Link href="/doctorspages" className={styles.viewBtn}>
           View My Appointments
         </Link>
       </div>
