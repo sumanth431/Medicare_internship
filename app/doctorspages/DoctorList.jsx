@@ -12,72 +12,103 @@ const SPECIALTIES = ["All", "Cardiologist", "Psychologist", "Dermatologist", "Op
 const SpecialtyBackgrounds = {
   Cardiologist: () => (
     <svg className={styles.bgSketch} viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <g opacity="0.08">
-        {/* Heart shapes */}
-        <path d="M100 160 C50 120 30 100 30 80 C30 60 45 50 60 50 C75 50 85 60 100 75 C115 60 125 50 140 50 C155 50 170 60 170 80 C170 100 150 120 100 160Z" fill="#ef4444" />
-        <path d="M100 140 C60 110 45 95 45 80 C45 70 55 65 65 65 C75 65 82 72 100 85 C118 72 125 65 135 65 C145 65 155 70 155 80 C155 95 140 110 100 140Z" fill="#ef4444" />
-        <circle cx="180" cy="40" r="15" fill="#fca5a5" />
-        <circle cx="20" cy="180" r="12" fill="#fecaca" />
+      <g strokeLinecap="round" strokeLinejoin="round">
+        {/* CLASSIC HEART - Pale pink fill with gray outline */}
+        
+        {/* Heart fill - pale pink */}
+        <path d="M100 142 C65 112 50 92 50 78 C50 67 58 58 70 58 C80 58 88 63 100 73 C112 63 120 58 130 58 C142 58 150 67 150 78 C150 92 135 112 100 142Z" fill="#FFE4E9" opacity="0.8" />
+        
+        {/* Heart outline - gray */}
+        <path d="M100 142 C65 112 50 92 50 78 C50 67 58 58 70 58 C80 58 88 63 100 73 C112 63 120 58 130 58 C142 58 150 67 150 78 C150 92 135 112 100 142Z" stroke="#888" strokeWidth="1.3" />
       </g>
     </svg>
   ),
   Psychologist: () => (
     <svg className={styles.bgSketch} viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <g opacity="0.08">
+      <g opacity="0.25" stroke="#666">
         {/* Brain waves and mind patterns */}
-        <path d="M20 100 Q50 70 80 100 T140 100 T200 100" stroke="#7c3aed" strokeWidth="4" />
-        <path d="M20 120 Q50 90 80 120 T140 120 T200 120" stroke="#7c3aed" strokeWidth="4" />
-        <path d="M30 140 Q60 110 90 140 T150 140 T190 140" stroke="#7c3aed" strokeWidth="4" />
-        <circle cx="40" cy="50" r="10" fill="#a78bfa" />
-        <circle cx="160" cy="60" r="8" fill="#a78bfa" />
-        <circle cx="100" cy="30" r="12" fill="#c4b5fd" />
+        <path d="M20 100 Q50 70 80 100 T140 100 T200 100" strokeWidth="2.2" />
+        <path d="M20 120 Q50 90 80 120 T140 120 T200 120" strokeWidth="2.2" />
+        <path d="M30 140 Q60 110 90 140 T150 140 T190 140" strokeWidth="2.2" />
+        <circle cx="40" cy="50" r="10" stroke="#666" strokeWidth="1.8" fill="none" />
+        <circle cx="160" cy="60" r="8" stroke="#666" strokeWidth="1.8" fill="none" />
+        <circle cx="100" cy="30" r="12" stroke="#666" strokeWidth="1.8" fill="none" />
       </g>
     </svg>
   ),
   Dermatologist: () => (
     <svg className={styles.bgSketch} viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <g opacity="0.08">
+      <g opacity="0.25" stroke="#666">
         {/* Skin cells and leaves */}
-        <circle cx="60" cy="60" r="25" stroke="#db2777" strokeWidth="2" />
-        <circle cx="60" cy="60" r="18" stroke="#db2777" strokeWidth="1.5" />
-        <circle cx="140" cy="80" r="30" stroke="#db2777" strokeWidth="2" />
-        <circle cx="140" cy="80" r="22" stroke="#db2777" strokeWidth="1.5" />
-        <ellipse cx="100" cy="140" rx="28" ry="22" fill="#f472b6" opacity="0.15" />
-        <path d="M160 160 L180 150 L175 170Z" fill="#f472b6" />
-        <path d="M30 140 Q40 130 50 140" stroke="#f472b6" strokeWidth="2" />
+        <circle cx="60" cy="60" r="25" strokeWidth="2.2" />
+        <circle cx="60" cy="60" r="18" strokeWidth="1.8" />
+        <circle cx="140" cy="80" r="30" strokeWidth="2.2" />
+        <circle cx="140" cy="80" r="22" strokeWidth="1.8" />
+        <ellipse cx="100" cy="140" rx="28" ry="22" strokeWidth="2" />
+        <path d="M160 160 L180 150 L175 170Z" strokeWidth="1.8" />
+        <path d="M30 140 Q40 130 50 140" strokeWidth="2" />
       </g>
     </svg>
   ),
   Ophthalmologist: () => (
     <svg className={styles.bgSketch} viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <g opacity="0.08">
+      <g opacity="0.25" stroke="#666">
         {/* Eyes */}
-        <ellipse cx="60" cy="80" rx="20" ry="28" stroke="#d97706" strokeWidth="2" />
-        <circle cx="60" cy="85" r="12" fill="#d97706" opacity="0.3" />
-        <circle cx="60" cy="85" r="6" fill="#d97706" />
-        <ellipse cx="140" cy="90" rx="22" ry="30" stroke="#d97706" strokeWidth="2" />
-        <circle cx="140" cy="95" r="14" fill="#d97706" opacity="0.3" />
-        <circle cx="140" cy="95" r="7" fill="#d97706" />
-        <path d="M50 50 Q60 40 70 50" stroke="#fbbf24" strokeWidth="2" />
-        <path d="M130 60 Q140 50 150 60" stroke="#fbbf24" strokeWidth="2" />
-        <circle cx="100" cy="150" r="15" fill="#fef3c7" opacity="0.5" />
+        <ellipse cx="60" cy="80" rx="20" ry="28" strokeWidth="2.2" />
+        <circle cx="60" cy="85" r="12" strokeWidth="1.8" />
+        <circle cx="60" cy="85" r="6" strokeWidth="1.5" />
+        <ellipse cx="140" cy="90" rx="22" ry="30" strokeWidth="2.2" />
+        <circle cx="140" cy="95" r="14" strokeWidth="1.8" />
+        <circle cx="140" cy="95" r="7" strokeWidth="1.5" />
+        <path d="M50 50 Q60 40 70 50" strokeWidth="2" />
+        <path d="M130 60 Q140 50 150 60" strokeWidth="2" />
+        <circle cx="100" cy="150" r="15" strokeWidth="1.8" />
       </g>
     </svg>
   ),
   Neurologist: () => (
     <svg className={styles.bgSketch} viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <g opacity="0.08">
-        {/* Neural network */}
-        <circle cx="50" cy="50" r="8" fill="#059669" />
-        <circle cx="150" cy="60" r="8" fill="#059669" />
-        <circle cx="100" cy="140" r="8" fill="#059669" />
-        <circle cx="60" cy="150" r="8" fill="#059669" />
-        <circle cx="140" cy="160" r="8" fill="#059669" />
-        <line x1="50" y1="50" x2="150" y2="60" stroke="#059669" strokeWidth="1.5" opacity="0.4" />
-        <line x1="50" y1="50" x2="100" y2="140" stroke="#059669" strokeWidth="1.5" opacity="0.4" />
-        <line x1="150" y1="60" x2="140" y2="160" stroke="#059669" strokeWidth="1.5" opacity="0.4" />
-        <line x1="100" y1="140" x2="60" y2="150" stroke="#059669" strokeWidth="1.5" opacity="0.4" />
-        <line x1="100" y1="140" x2="140" y2="160" stroke="#059669" strokeWidth="1.5" opacity="0.4" />
+      <g opacity="0.25" stroke="#666">
+        {/* Head */}
+        <circle cx="100" cy="35" r="18" strokeWidth="2" />
+        
+        {/* Body */}
+        <line x1="100" y1="53" x2="100" y2="110" strokeWidth="2" />
+        
+        {/* Left arm */}
+        <line x1="100" y1="65" x2="65" y2="85" strokeWidth="2" />
+        
+        {/* Right arm */}
+        <line x1="100" y1="65" x2="135" y2="85" strokeWidth="2" />
+        
+        {/* Left leg */}
+        <line x1="100" y1="110" x2="75" y2="165" strokeWidth="2" />
+        
+        {/* Right leg */}
+        <line x1="100" y1="110" x2="125" y2="165" strokeWidth="2" />
+        
+        {/* Spinal cord - center nerve */}
+        <line x1="100" y1="35" x2="100" y2="165" strokeWidth="1.8" />
+        
+        {/* Brain nerves - from head */}
+        <path d="M88 30 Q75 35 70 50" strokeWidth="1.5" />
+        <path d="M112 30 Q125 35 130 50" strokeWidth="1.5" />
+        
+        {/* Nerves radiating to left arm */}
+        <path d="M95 60 L50 70" strokeWidth="1.5" />
+        <path d="M95 75 L55 85" strokeWidth="1.5" />
+        
+        {/* Nerves radiating to right arm */}
+        <path d="M105 60 L150 70" strokeWidth="1.5" />
+        <path d="M105 75 L145 85" strokeWidth="1.5" />
+        
+        {/* Nerves radiating to left leg */}
+        <path d="M95 120 L60 140" strokeWidth="1.5" />
+        <path d="M95 135 L65 160" strokeWidth="1.5" />
+        
+        {/* Nerves radiating to right leg */}
+        <path d="M105 120 L140 140" strokeWidth="1.5" />
+        <path d="M105 135 L135 160" strokeWidth="1.5" />
       </g>
     </svg>
   ),
@@ -219,6 +250,59 @@ export default function DoctorList() {
 
   return (
     <div className={styles.pageInner}>
+      {/* Background medical sketches */}
+      <svg className={styles.bgMedicineSketch} viewBox="0 0 1000 800">
+        {/* Injection/Syringe - top left */}
+        <g opacity="0.08" stroke="#888" strokeWidth="1.5">
+          <rect x="50" y="100" width="80" height="30" rx="15" fill="none" />
+          <line x1="130" y1="115" x2="160" y2="105" strokeWidth="1.5" />
+          <circle cx="155" cy="100" r="5" fill="none" />
+          <rect x="45" y="130" width="10" height="40" fill="none" />
+          <rect x="47" y="135" width="6" height="30" fill="#DDD" opacity="0.3" />
+        </g>
+
+        {/* Medicine Bottle - top right */}
+        <g opacity="0.08" stroke="#888" strokeWidth="1.5">
+          <rect x="850" y="80" width="80" height="120" rx="8" fill="none" />
+          <rect x="870" y="60" width="40" height="25" rx="3" fill="none" />
+          <line x1="870" y1="75" x2="910" y2="75" strokeWidth="1.5" />
+          <circle cx="890" cy="120" r="25" fill="none" opacity="0.4" />
+        </g>
+
+        {/* Capsule Pills - middle left */}
+        <g opacity="0.08" stroke="#888" strokeWidth="1.5">
+          <ellipse cx="80" cy="400" rx="20" ry="12" fill="none" />
+          <ellipse cx="120" cy="390" rx="22" ry="13" fill="none" transform="rotate(-20 120 390)" />
+          <ellipse cx="150" cy="385" rx="18" ry="11" fill="none" transform="rotate(15 150 385)" />
+        </g>
+
+        {/* IV Bag - middle right */}
+        <g opacity="0.08" stroke="#888" strokeWidth="1.5">
+          <path d="M 880 320 L 900 380 L 860 380 Z" fill="none" />
+          <line x1="880" y1="320" x2="880" y2="280" strokeWidth="1.5" />
+          <circle cx="880" cy="270" r="6" fill="none" />
+          <line x1="880" y1="275" x2="920" y2="300" strokeWidth="1.2" />
+        </g>
+
+        {/* Stethoscope - bottom left */}
+        <g opacity="0.08" stroke="#888" strokeWidth="1.5">
+          <path d="M 100 700 Q 80 680 60 700" fill="none" />
+          <circle cx="50" cy="710" r="8" fill="none" />
+          <circle cx="150" cy="710" r="8" fill="none" />
+          <path d="M 60 710 Q 105 750 150 710" fill="none" />
+        </g>
+
+        {/* Medicine Strip - bottom right */}
+        <g opacity="0.08" stroke="#888" strokeWidth="1.5">
+          <rect x="820" y="680" width="60" height="80" fill="none" rx="3" />
+          <line x1="835" y1="680" x2="835" y2="760" strokeWidth="1" opacity="0.4" />
+          <line x1="850" y1="680" x2="850" y2="760" strokeWidth="1" opacity="0.4" />
+          <circle cx="828" cy="695" r="4" fill="none" opacity="0.5" />
+          <circle cx="843" cy="695" r="4" fill="none" opacity="0.5" />
+          <circle cx="828" cy="720" r="4" fill="none" opacity="0.5" />
+          <circle cx="843" cy="720" r="4" fill="none" opacity="0.5" />
+        </g>
+      </svg>
 
       <header className={styles.header}>
         <div className={styles.headerLeft}>
