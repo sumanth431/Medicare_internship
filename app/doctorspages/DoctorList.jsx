@@ -8,6 +8,85 @@ import styles from "./page.module.css";
 
 const SPECIALTIES = ["All", "Cardiologist", "Psychologist", "Dermatologist", "Ophthalmologist", "Neurologist"];
 
+// ── Specialty Background Sketches ──────────────────────
+const SpecialtyBackgrounds = {
+  Cardiologist: () => (
+    <svg className={styles.bgSketch} viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <g opacity="0.08">
+        {/* Heart shapes */}
+        <path d="M100 160 C50 120 30 100 30 80 C30 60 45 50 60 50 C75 50 85 60 100 75 C115 60 125 50 140 50 C155 50 170 60 170 80 C170 100 150 120 100 160Z" fill="#ef4444" />
+        <path d="M100 140 C60 110 45 95 45 80 C45 70 55 65 65 65 C75 65 82 72 100 85 C118 72 125 65 135 65 C145 65 155 70 155 80 C155 95 140 110 100 140Z" fill="#ef4444" />
+        <circle cx="180" cy="40" r="15" fill="#fca5a5" />
+        <circle cx="20" cy="180" r="12" fill="#fecaca" />
+      </g>
+    </svg>
+  ),
+  Psychologist: () => (
+    <svg className={styles.bgSketch} viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <g opacity="0.08">
+        {/* Brain waves and mind patterns */}
+        <path d="M20 100 Q50 70 80 100 T140 100 T200 100" stroke="#7c3aed" strokeWidth="4" />
+        <path d="M20 120 Q50 90 80 120 T140 120 T200 120" stroke="#7c3aed" strokeWidth="4" />
+        <path d="M30 140 Q60 110 90 140 T150 140 T190 140" stroke="#7c3aed" strokeWidth="4" />
+        <circle cx="40" cy="50" r="10" fill="#a78bfa" />
+        <circle cx="160" cy="60" r="8" fill="#a78bfa" />
+        <circle cx="100" cy="30" r="12" fill="#c4b5fd" />
+      </g>
+    </svg>
+  ),
+  Dermatologist: () => (
+    <svg className={styles.bgSketch} viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <g opacity="0.08">
+        {/* Skin cells and leaves */}
+        <circle cx="60" cy="60" r="25" stroke="#db2777" strokeWidth="2" />
+        <circle cx="60" cy="60" r="18" stroke="#db2777" strokeWidth="1.5" />
+        <circle cx="140" cy="80" r="30" stroke="#db2777" strokeWidth="2" />
+        <circle cx="140" cy="80" r="22" stroke="#db2777" strokeWidth="1.5" />
+        <ellipse cx="100" cy="140" rx="28" ry="22" fill="#f472b6" opacity="0.15" />
+        <path d="M160 160 L180 150 L175 170Z" fill="#f472b6" />
+        <path d="M30 140 Q40 130 50 140" stroke="#f472b6" strokeWidth="2" />
+      </g>
+    </svg>
+  ),
+  Ophthalmologist: () => (
+    <svg className={styles.bgSketch} viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <g opacity="0.08">
+        {/* Eyes */}
+        <ellipse cx="60" cy="80" rx="20" ry="28" stroke="#d97706" strokeWidth="2" />
+        <circle cx="60" cy="85" r="12" fill="#d97706" opacity="0.3" />
+        <circle cx="60" cy="85" r="6" fill="#d97706" />
+        <ellipse cx="140" cy="90" rx="22" ry="30" stroke="#d97706" strokeWidth="2" />
+        <circle cx="140" cy="95" r="14" fill="#d97706" opacity="0.3" />
+        <circle cx="140" cy="95" r="7" fill="#d97706" />
+        <path d="M50 50 Q60 40 70 50" stroke="#fbbf24" strokeWidth="2" />
+        <path d="M130 60 Q140 50 150 60" stroke="#fbbf24" strokeWidth="2" />
+        <circle cx="100" cy="150" r="15" fill="#fef3c7" opacity="0.5" />
+      </g>
+    </svg>
+  ),
+  Neurologist: () => (
+    <svg className={styles.bgSketch} viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <g opacity="0.08">
+        {/* Neural network */}
+        <circle cx="50" cy="50" r="8" fill="#059669" />
+        <circle cx="150" cy="60" r="8" fill="#059669" />
+        <circle cx="100" cy="140" r="8" fill="#059669" />
+        <circle cx="60" cy="150" r="8" fill="#059669" />
+        <circle cx="140" cy="160" r="8" fill="#059669" />
+        <line x1="50" y1="50" x2="150" y2="60" stroke="#059669" strokeWidth="1.5" opacity="0.4" />
+        <line x1="50" y1="50" x2="100" y2="140" stroke="#059669" strokeWidth="1.5" opacity="0.4" />
+        <line x1="150" y1="60" x2="140" y2="160" stroke="#059669" strokeWidth="1.5" opacity="0.4" />
+        <line x1="100" y1="140" x2="60" y2="150" stroke="#059669" strokeWidth="1.5" opacity="0.4" />
+        <line x1="100" y1="140" x2="140" y2="160" stroke="#059669" strokeWidth="1.5" opacity="0.4" />
+      </g>
+    </svg>
+  ),
+};
+
+function getSpecialtyBackground(specialty) {
+  return SpecialtyBackgrounds[specialty] || null;
+}
+
 const DOCTORS = [
   { id: 1, name: "Dr. Anika Mehta",    specialty: "Cardiologist",    qualification: "MBBS, MD (Cardiology)",       location: "Andheri, Mumbai",  experience: 12, rating: 4.9, reviews: 312, patients: "5,000+",  available: true,  nextSlot: "09:30 AM",        price: 800,  tag: "Top Rated",    imageUrl: "https://ui-avatars.com/api/?name=Anika+Mehta&background=0ea5e9&color=fff&size=128&bold=true", hue: "210" },
   { id: 2, name: "Dr. Rajesh Iyer",    specialty: "Psychologist",    qualification: "MBBS, M.Phil (Psychiatry)",  location: "Bandra, Mumbai",   experience: 8,  rating: 4.7, reviews: 189, patients: "3,200+",  available: true,  nextSlot: "10:00 AM",        price: 600,  tag: "Popular",      imageUrl: "https://ui-avatars.com/api/?name=Rajesh+Iyer&background=7c3aed&color=fff&size=128&bold=true",  hue: "262" },
@@ -27,8 +106,17 @@ function StarRating({ rating }) {
 }
 
 function DoctorCard({ doc, isFav, onToggleFav }) {
+  const BgComponent = getSpecialtyBackground(doc.specialty);
+  
   return (
     <div className={styles.card}>
+      {/* Specialty-specific background sketch */}
+      {BgComponent && (
+        <div className={styles.bgSketchContainer}>
+          <BgComponent />
+        </div>
+      )}
+      
       {doc.tag && <div className={styles.cardTag}>{doc.tag}</div>}
 
       <button
