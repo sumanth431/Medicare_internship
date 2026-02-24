@@ -5,7 +5,6 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import styles from "./page.module.css";
-import MedicalSketches from "@/components/MedicalSketches";
 
 // ── Mock appointment data (in real app comes from route state / API) ──
 const APPOINTMENT = {
@@ -121,7 +120,20 @@ export default function AppointmentConfirmed() {
 
         {/* ── Doctor card ───────────────────────────── */}
         <div className={styles.doctorCard}>
-          <MedicalSketches specialty="Cardiologist" className={styles.cardSketches} />
+      {/* Inline cardiologist background sketches */}
+      <svg style={{position:"absolute",inset:0,width:"100%",height:"100%",pointerEvents:"none",zIndex:0,opacity:0.07}} viewBox="0 0 300 300" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <g stroke="#0ea5e9" strokeLinecap="round" strokeLinejoin="round">
+          {/* ECG line */}
+          <polyline points="10,80 40,80 52,45 64,115 76,58 88,80 120,80 136,38 148,122 160,80 290,80" strokeWidth="1.8"/>
+          {/* Heart */}
+          <path d="M150 200 C150 200 118 178 118 160 C118 149 126 142 136 144 C141 145 146 149 150 155 C154 149 159 145 164 144 C174 142 182 149 182 160 C182 178 150 200 150 200Z" strokeWidth="1.5"/>
+          {/* Stethoscope small */}
+          <circle cx="60" cy="240" r="12" strokeWidth="1.4"/>
+          <circle cx="60" cy="240" r="5" strokeWidth="1.2"/>
+          <path d="M48 240 C48 240 36 234 36 220 C36 207 44 202 50 203" strokeWidth="1.4"/>
+          <path d="M72 240 C72 240 84 234 84 220 C84 207 76 202 70 203" strokeWidth="1.4"/>
+        </g>
+      </svg>
           <div className={styles.doctorCardInner}>
             <img
               src={APPOINTMENT.doctor.imageUrl}
@@ -138,7 +150,20 @@ export default function AppointmentConfirmed() {
 
         {/* ── Appointment details card ──────────────── */}
         <div className={styles.detailCard}>
-          <MedicalSketches specialty="Cardiologist" className={styles.cardSketches} />
+      {/* Inline cardiologist background sketches */}
+      <svg style={{position:"absolute",inset:0,width:"100%",height:"100%",pointerEvents:"none",zIndex:0,opacity:0.07}} viewBox="0 0 300 300" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <g stroke="#0ea5e9" strokeLinecap="round" strokeLinejoin="round">
+          {/* ECG line */}
+          <polyline points="10,80 40,80 52,45 64,115 76,58 88,80 120,80 136,38 148,122 160,80 290,80" strokeWidth="1.8"/>
+          {/* Heart */}
+          <path d="M150 200 C150 200 118 178 118 160 C118 149 126 142 136 144 C141 145 146 149 150 155 C154 149 159 145 164 144 C174 142 182 149 182 160 C182 178 150 200 150 200Z" strokeWidth="1.5"/>
+          {/* Stethoscope small */}
+          <circle cx="60" cy="240" r="12" strokeWidth="1.4"/>
+          <circle cx="60" cy="240" r="5" strokeWidth="1.2"/>
+          <path d="M48 240 C48 240 36 234 36 220 C36 207 44 202 50 203" strokeWidth="1.4"/>
+          <path d="M72 240 C72 240 84 234 84 220 C84 207 76 202 70 203" strokeWidth="1.4"/>
+        </g>
+      </svg>
 
           <div className={styles.apptNumRow}>
             <span className={styles.apptNumLabel}>Appointment Number</span>
@@ -187,7 +212,29 @@ export default function AppointmentConfirmed() {
 
         {/* ── Patient details card ──────────────────── */}
         <div className={styles.patientCard}>
-          <MedicalSketches specialty="All" className={styles.cardSketches} />
+      {/* Inline medical background sketches */}
+      <svg style={{position:"absolute",inset:0,width:"100%",height:"100%",pointerEvents:"none",zIndex:0,opacity:0.06}} viewBox="0 0 300 300" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <g stroke="#0ea5e9" strokeLinecap="round" strokeLinejoin="round">
+          {/* Syringe */}
+          <rect x="60" y="40" width="80" height="22" rx="11" strokeWidth="1.5"/>
+          <line x1="140" y1="51" x2="168" y2="42" strokeWidth="1.5"/>
+          <circle cx="172" cy="40" r="5" strokeWidth="1.5"/>
+          <rect x="55" y="62" width="10" height="30" strokeWidth="1.2"/>
+          {/* Stethoscope */}
+          <path d="M30 220 Q18 205 18 190 C18 175 28 168 38 170" strokeWidth="1.5"/>
+          <path d="M66 220 Q78 205 78 190 C78 175 68 168 58 170" strokeWidth="1.5"/>
+          <path d="M38 170 C38 163 44 158 48 158" strokeWidth="1.5"/>
+          <path d="M58 170 C58 163 52 158 48 158" strokeWidth="1.5"/>
+          <circle cx="48" cy="225" r="10" strokeWidth="1.5"/>
+          <circle cx="48" cy="225" r="4" strokeWidth="1.2"/>
+          {/* Capsule pill */}
+          <rect x="190" y="60" width="80" height="28" rx="14" strokeWidth="1.5"/>
+          <line x1="230" y1="60" x2="230" y2="88" strokeWidth="1.2"/>
+          {/* Medical cross */}
+          <rect x="210" y="190" width="12" height="36" rx="3" strokeWidth="1.3"/>
+          <rect x="198" y="202" width="36" height="12" rx="3" strokeWidth="1.3"/>
+        </g>
+      </svg>
 
           <p className={styles.patientTitle}>Add Patient Details</p>
 
