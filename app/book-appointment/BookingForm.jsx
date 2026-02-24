@@ -3,6 +3,7 @@
 // Client Component — date picker, slot selection, booking logic
 
 import { useState, useCallback } from "react";
+import { useRouter } from "next/navigation";
 import Link from "next/link";
 import styles from "./page.module.css";
 
@@ -103,6 +104,7 @@ function SlotButton({ slot, state, onClick }) {
 
 // ── Main Component ─────────────────────────────────────
 export default function BookingForm() {
+  const router = useRouter();
   const dates = getDates();
   const [selectedDateIdx, setSelectedDateIdx] = useState(0);
   const [selectedSlot,    setSelectedSlot]    = useState(null);
@@ -138,6 +140,11 @@ export default function BookingForm() {
         slot:      selectedSlot,
       });
       setSuccess(true);
+      
+      // Redirect to appointment confirmed page after 2 seconds
+      setTimeout(() => {
+        router.push("/appointment-confirmed");
+      }, 2000);
     } catch (err) {
       setError(err.message || "Unable to book appointment. Please try again.");
       setSelectedSlot(null);
