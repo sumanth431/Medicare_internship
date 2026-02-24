@@ -108,6 +108,7 @@ export default function BookingForm() {
   const [selectedSlot,    setSelectedSlot]    = useState(null);
   const [loading,         setLoading]         = useState(false);
   const [success,         setSuccess]         = useState(false);
+  const [error,           setError]           = useState(null);
   const [showAbout,       setShowAbout]       = useState(false);
 
   const selectedDate = dates[selectedDateIdx];
@@ -125,13 +126,21 @@ export default function BookingForm() {
   const handleBook = async () => {
     if (!selectedSlot) return;
     setLoading(true);
+    setError(null);
     try {
+      // Simulate random booking failure (20% chance)
+      if (Math.random() < 0.2) {
+        throw new Error("This slot was just booked by another patient. Please select a different time.");
+      }
       await confirmBooking({
         doctor:    DOCTOR.name,
         date:      selectedDate.toDateString(),
         slot:      selectedSlot,
       });
       setSuccess(true);
+    } catch (err) {
+      setError(err.message || "Unable to book appointment. Please try again.");
+      setSelectedSlot(null);
     } finally {
       setLoading(false);
     }
@@ -141,7 +150,7 @@ export default function BookingForm() {
   const monthLabel = `${MONTH_NAMES[selectedDate.getMonth()]}, ${selectedDate.getFullYear()}`;
 
   return (
-    <div className={styles.page}>
+    <div className={styles.page} data-specialty={DOCTOR.specialization.toLowerCase()}>
 
       {/* ── Top bar ──────────────────────────────────── */}
       <div className={styles.topBar}>
@@ -311,8 +320,24 @@ export default function BookingForm() {
           </div>
         </div>
 
+        {/* ── Error banner ───────────────────────────── */}
+        {error && (
+          <div className={styles.errorBanner}>
+            <svg width="18" height="18" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+              <circle cx="12" cy="12" r="10"/>
+              <line x1="15" y1="9" x2="9" y2="15"/>
+              <line x1="9" y1="9" x2="15" y2="15"/>
+            </svg>
+            <div>
+              <strong>Booking Failed</strong>
+              <p>{error}</p>
+            </div>
+            <button className={styles.errorClose} onClick={() => setError(null)}>✕</button>
+          </div>
+        )}
+
         {/* ── No slot selected warning ───────────────── */}
-        {!selectedSlot && (
+        {!selectedSlot && !error && (
           <div className={styles.noSlotBanner}>
             <svg width="16" height="16" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
               <circle cx="12" cy="12" r="10"/>
