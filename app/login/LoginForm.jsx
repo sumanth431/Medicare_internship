@@ -104,7 +104,7 @@ export default function LoginForm() {
     try {
       await loginUser(identifier.trim(), password);
       setSuccess(true);
-      // router.push("/dashboard"); // ← uncomment after adding useRouter
+      router.push("/doctorspages"); // ← uncomment after adding useRouter
     } catch (err) {
       setError(err.message || "Login failed. Please try again.");
     } finally {
