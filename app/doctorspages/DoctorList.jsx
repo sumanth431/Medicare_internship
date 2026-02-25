@@ -221,7 +221,7 @@ export default function DoctorList() {
           <div className={styles.headerAvatar}>P</div>
           <div>
             <p className={styles.greetingLine}>Good morning 👋</p>
-            <h2 className={styles.greetingName}>Hello, Priya!</h2>
+            <h2 className={styles.greetingName}>Hello, Sumanth!</h2>
           </div>
         </div>
         <button className={styles.notifBtn} aria-label="Notifications">
